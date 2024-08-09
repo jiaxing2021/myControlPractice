@@ -15,11 +15,11 @@ FIS = mamfis('Name', 'RoomTemperatureController');
 
 % define room temperature member funcion
 FIS = addInput(FIS, [8 32], 'Name', 'temp');
-FIS = addMF(FIS, 'temp', 'trimf', [8 11 14], 'Name', 'Cold');
+FIS = addMF(FIS, 'temp', 'trapmf', [8 8 11 14], 'Name', 'Cold');
 FIS = addMF(FIS, 'temp', 'trapmf', [11 14 17 20], 'Name', 'Cool');
 FIS = addMF(FIS, 'temp', 'trimf', [17 20 23], 'Name', 'Comfortable');
 FIS = addMF(FIS, 'temp', 'trapmf', [20 23 26 29], 'Name', 'Warm');
-FIS = addMF(FIS, 'temp', 'trimf', [26 29 32], 'Name', 'Hot');
+FIS = addMF(FIS, 'temp', 'trapmf', [26 29 32 32], 'Name', 'Hot');
 
 
 % define fan speed member funcion
@@ -46,7 +46,7 @@ plotfis(FIS);
 figure;
 subplot(2,1,1);
 plotmf(FIS, 'input', 1);
-title('Error Membership Functions');
+title('temperature Membership Functions');
 subplot(2,1,2);
 plotmf(FIS, 'output', 1);
 title('Fan Speed Membership Functions');

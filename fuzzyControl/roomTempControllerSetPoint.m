@@ -15,9 +15,9 @@ FIS = mamfis('Name', 'RoomTemperatureController');
 
 % define room temperature difference membership funcion
 FIS = addInput(FIS, [-50 50], 'Name', 'difference');
-FIS = addMF(FIS, 'difference', 'trimf', [-50 -10 0], 'Name', 'Cooling');
+FIS = addMF(FIS, 'difference', 'trapmf', [-50 -50 -10 0], 'Name', 'Cooling');
 FIS = addMF(FIS, 'difference', 'trimf', [-2 0 2], 'Name', 'Settling');
-FIS = addMF(FIS, 'difference', 'trimf', [0 10 50], 'Name', 'Heating');
+FIS = addMF(FIS, 'difference', 'trapmf', [0 10 50 50], 'Name', 'Heating');
 
 % define fan speed membership funcion
 FIS = addOutput(FIS, [0 100], 'Name', 'FanSpeed');
