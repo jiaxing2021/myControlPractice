@@ -70,10 +70,16 @@ sys_c = ss(A_c, B_c, C_c, D_c);
 
 A_aug = [zeros(2,2) -C;zeros(4,2) A];
 B_aug = [0; 0; B];
+
+% reachability check
+Co = ctrb(A_aug,B_aug);
+rho_Co = rank(Co); % full states feadback control with integral doesn't work
+
 % des = [-1 -1 -1 -1 -2 -2]; % two more roots for intrgrator
 % K_aug = acker(A_aug,B_aug,des);
 % K_q = K_aug(1:2);
 % K_x = K_aug(3:end);
+
 K_x = K;
 K_q = [-1, -10];
 
