@@ -53,27 +53,26 @@ out = sim("SISO_slx");
 %% plot
 figure(1)
 hold on
-plot(out.r.time, out.r.data, "k", "LineWidth",1.5)
-plot(out.e.time, out.e.data, "r", "LineWidth",1.5)
-plot(out.y.time, out.y.data, "b", "LineWidth",1.5)
+plot(out.r.time, out.r.data, "LineWidth",1.5)
+plot(out.e.time, out.e.data, "LineWidth",1.5)
+plot(out.y.time, out.y.data, "LineWidth",1.5)
 legend('reference','error','output')
 zoom on, grid on;
 
 figure(2)
 hold on
-plot(out.x.time, out.x.data, "k", "LineWidth",1.5)
-legend('state')
+plot(out.x.time, out.x.data, "LineWidth",1.5)
 zoom on, grid on;
 
 figure(3)
 hold on
-plot(out.u.time, out.u.data, "k", "LineWidth",1.5)
+plot(out.u.time, out.u.data, "LineWidth",1.5)
 legend('input')
 zoom on, grid on;
 
 figure(4)
 hold on
-plot(out.f.time, out.f.data, "k", "LineWidth",1.5)
+plot(out.f.time, out.f.data, "LineWidth",1.5)
 legend('feadback')
 zoom on, grid on;
 
