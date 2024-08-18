@@ -59,43 +59,38 @@ C_c = C;
 D_c = D;
 
 sys_c = ss(A_c, B_c, C_c, D_c);
-% step(sys_c);
+
+t = 0:0.1:80;
+ref = 2;
+step_input = ref*ones(size(t));
+
+[y,t] = lsim(sys_c, step_input, t);
+figure('Name','step signal response')
+hold on, grid on
+plot(t,y,"LineWidth",1.5)
+plot(t,step_input,"LineWidth",1.5)
+legend("output1(position)","output2(theta)","reference") 
+
 % animation
-% [yOut,tOut] = step(sys_c);
-% animation(l,yOut, tOut)
+% animation(3,y, t)
 
+%% PID controller with simulink
+Kp = 50;
+Ki = 30;
+Kd = 10;
 
-%% full states feadback control with integral
-% doesn't work
+t_sim = 80;
 
-A_aug = [zeros(2,2) -C;zeros(4,2) A];
-B_aug = [0; 0; B];
+out = sim("invertedPendulum_sim.slx");
 
-% reachability check
-Co = ctrb(A_aug,B_aug);
-rho_Co = rank(Co); % full states feadback control with integral doesn't work
+figure('Name','step signal response(PID)')
+hold on, grid on
+plot(out.y.Time, out.y.Data, "LineWidth",1.5)
+plot(out.r.Time, out.r.Data, "LineWidth",1.5)
+legend("output1(position)","output2(theta)","reference") 
 
-% des = [-1 -1 -1 -1 -2 -2]; % two more roots for intrgrator
-% K_aug = acker(A_aug,B_aug,des);
-% K_q = K_aug(1:2);
-% K_x = K_aug(3:end);
-
-K_x = K;
-K_q = [-1, -10];
-
-% simulation
-t_sim = 20;
-out = sim("fullStateFeadbackWithIntegrator");
-
-figure()
-hold on
-plot(out.y1.time, out.y1.data, "g", "LineWidth",1.5)
-plot(out.y2.time, out.y2.data, "b", "LineWidth",1.5)
-% legend('position','angle')
-zoom on, grid on;
-
-
-%% full states feedback control with state observer
+% animation
+% animation(3,out.y.Data, out.y.Time)
 
 
 
