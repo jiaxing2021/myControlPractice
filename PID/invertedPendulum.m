@@ -72,12 +72,12 @@ plot(t,step_input,"LineWidth",1.5)
 legend("output1(position)","output2(theta)","reference") 
 
 % animation
-% animation(3,y, t)
+% animation(3,y,t)
 
 %% PID controller with simulink
-Kp = 50;
+Kp = 1000;
 Ki = 30;
-Kd = 10;
+Kd = 1000;
 
 t_sim = 80;
 
